@@ -2,29 +2,33 @@ import styled from '@emotion/styled';
 
 export const HeaderContainer = styled.div`
   position: relative;
+  height: 77px;
   width: 100%;
-  padding: 0.85714rem 1.142857rem;
-  display: flex;
-  justify-content: space-between;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: 260px 1fr;
   align-items: center;
 `;
 
 export const HeaderTitle = styled.h1`
   width: 244px;
-  font-size: 1.8rem;
+  font-size: 28px;
   font-weight: bold;
   line-height: 1;
   svg {
-    width: 28px;
-    height: 28px;
+    width: 36px;
+    height: 36px;
     margin-right: 8px;
-    vertical-align: bottom;
+    line-height: 1;
+    font-size: 0;
+    vertical-align: middle;
   }
 `;
 
 export const HeaderToolbar = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `;
 
 export const Profile = styled.div`
