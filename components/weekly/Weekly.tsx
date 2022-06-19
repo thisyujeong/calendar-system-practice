@@ -1,11 +1,11 @@
-import { dayOfWeek } from '../../utils/dayOfWeek';
+import { dayOfWeekEn } from '../../utils/dayOfWeek';
 import { WeeklyContainer } from './Weekly.style';
 import WeeklyItem from './WeeklyItem';
 
 const Weekly = () => {
   return (
     <WeeklyContainer>
-      {dayOfWeek.map((day) => (
+      {dayOfWeekEn.map((day) => (
         <WeeklyItem key={day} day={day} />
       ))}
     </WeeklyContainer>

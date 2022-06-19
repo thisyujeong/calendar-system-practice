@@ -1,3 +1,4 @@
+import Calendar from '../Calendar';
 import Aside from './Aside';
 import { Container, Content, Main } from './Container.style';
 import Header from './Header';
@@ -10,7 +11,7 @@ const LayoutContianer = ({ children }: LayoutProps) => {
   return (
     <Container>
       <Aside>
-        <h1>aside</h1>
+        <Calendar />
       </Aside>
       <Content>
         <Header />
