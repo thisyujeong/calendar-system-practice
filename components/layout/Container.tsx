@@ -9,11 +9,11 @@ type LayoutProps = {
 const LayoutContianer = ({ children }: LayoutProps) => {
   return (
     <Container>
-      <Header />
+      <Aside>
+        <h1>aside</h1>
+      </Aside>
       <Content>
-        <Aside>
-          <h1>aside</h1>
-        </Aside>
+        <Header />
         <Main>{children}</Main>
       </Content>
     </Container>
