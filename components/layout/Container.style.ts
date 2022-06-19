@@ -13,5 +13,5 @@ export const Content = styled.div`
 `;
 
 export const Main = styled.main`
-  padding: 16px;
+  padding: 1.142857rem;
 `;

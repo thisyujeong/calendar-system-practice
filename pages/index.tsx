@@ -1,10 +1,11 @@
 import type { NextPage } from 'next';
 import LayoutContianer from '../components/layout/Container';
+import Weekly from '../components/weekly/Weekly';
 
 const Home: NextPage = () => {
   return (
     <LayoutContianer>
-      <div>calendar area</div>
+      <Weekly />
     </LayoutContianer>
   );
 };
