@@ -1,14 +1,14 @@
 import { AnyAction, combineReducers } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
-import counter from './counter';
+import calendar from './calendar';
 
 export interface InitValue {
-  value: number;
+  current: Date;
 }
 
 export interface InitState {
-  counter: InitValue;
+  calendar: InitValue;
 }
 
 const rootReducer = (state: InitState | undefined, action: AnyAction) => {
@@ -19,7 +19,7 @@ const rootReducer = (state: InitState | undefined, action: AnyAction) => {
     };
   }
   return combineReducers({
-    counter,
+    calendar,
   })(state, action);
 };
 
