@@ -10,7 +10,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   position: relative;
-  grid-template-rows: 77px 1fr;
+  grid-template-rows: ${Common.layout.headerHeight} 1fr;
 `;
 
 export const Main = styled.main`

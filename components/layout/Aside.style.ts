@@ -45,7 +45,7 @@ export const AsideTitle = styled.h1`
   padding: 0 24px;
   font-size: 28px;
   font-weight: bold;
-  line-height: 77px;
+  line-height: ${Common.layout.headerHeight};
 
   svg {
     width: 36px;

@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
+import { Common } from '../../styles/common';
 
 export const HeaderContainer = styled.div`
   position: relative;
-  height: 77px;
+  height: ${Common.layout.headerHeight};
   width: 100%;
   padding: 0 40px;
   display: grid;
