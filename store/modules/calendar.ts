@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
+import { Days } from '../../index';
 import getCalendar from '../../utils/getCalendar';
 
 type CurrentCalendar = {
   fullDate: string;
-  days: number[];
+  days: Days[];
   month: number;
   year: number;
 };

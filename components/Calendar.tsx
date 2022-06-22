@@ -1,4 +1,6 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
+import { Days } from '../index';
 import { currCalendar } from '../store/modules/calendar';
 import { dayOfWeekKo } from '../utils/dayOfWeek';
 import { CalendarContainer } from './Calendar.style';
@@ -16,7 +18,21 @@ const Calendar = () => {
             ))}
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {days.map((day: Days, i: number) => (
+            <React.Fragment key={i}>
+              {i % 7 === 0 && (
+                <tr>
+                  {days.slice(i, i + 7).map((d: Days) => (
+                    <td key={d.date} data-view={d.isCurrMonth ? true : false}>
+                      {d.date}
+                    </td>
+                  ))}
+                </tr>
+              )}
+            </React.Fragment>
+          ))}
+        </tbody>
       </table>
     </CalendarContainer>
   );

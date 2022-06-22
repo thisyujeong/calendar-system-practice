@@ -28,13 +28,26 @@ export default function getCalendar({ current }: { current: Date }) {
       const date = lastDateOfPrevMonth.getDate() - i;
       const fullDate = new Date(year, month, date);
 
-      days.push(date);
+      days.push({
+        date: date,
+        day: fullDate.getDay(),
+        isCurrMonth: false,
+      });
     }
   }
 
   // days of current month
   for (let i = firstDate.getDate(); i <= lastDate.getDate(); i++) {
-    days.push(i);
+    const year = current.getFullYear();
+    const month = current.getMonth();
+    const date = i;
+    const fullDate = new Date(year, month, date);
+
+    days.push({
+      date: date,
+      day: fullDate.getDay(),
+      isCurrMonth: true,
+    });
   }
 
   // preview date for next month of current month calendar
@@ -44,9 +57,14 @@ export default function getCalendar({ current }: { current: Date }) {
     for (let i = 0; i < 7 - (lastDay + 1); i++) {
       const year = firstDateOfNextMonth.getFullYear();
       const month = firstDateOfNextMonth.getMonth();
-      const date = firstDateOfNextMonth.getDate();
+      const date = i + 1;
       const fullDate = new Date(year, month, date);
-      days.push(i + 1);
+
+      days.push({
+        date: date,
+        day: fullDate.getDay(),
+        isCurrMonth: false,
+      });
     }
   }
 

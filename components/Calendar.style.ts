@@ -5,8 +5,8 @@ export const CalendarContainer = styled.div`
     th {
       display: table-cell;
       width: 30px;
-      height: 30px;
-      opacity: 0.6;
+      height: 38px;
+      color: #4f785f;
     }
   }
 
@@ -16,6 +16,10 @@ export const CalendarContainer = styled.div`
       width: 30px;
       height: 30px;
       text-align: center;
+    }
+
+    td[data-view='false'] {
+      opacity: 0.5;
     }
   }
 `;
