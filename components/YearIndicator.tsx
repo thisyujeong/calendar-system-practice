@@ -1,17 +1,15 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { currCalendar } from '../store/modules/calendar';
 import convertDate from '../utils/convertDate';
 import { IndicatorContainer, YearText } from './YearIndicator.style';
 
 const YearIndicator = () => {
-  const calendar = useSelector((state: RootState) => state.calendar.current);
-  console.log();
+  const calendar = useSelector(currCalendar);
+  const { month, year } = convertDate(calendar.fullDate);
 
   return (
     <IndicatorContainer>
-      <YearText>
-        {convertDate(calendar).month} {convertDate(calendar).year}
-      </YearText>
+      <YearText>{`${month} ${year}`}</YearText>
     </IndicatorContainer>
   );
 };

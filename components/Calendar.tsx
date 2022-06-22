@@ -1,12 +1,11 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { selectDate } from '../store/modules/calendar';
+import { useSelector } from 'react-redux';
+import { currCalendar } from '../store/modules/calendar';
 import { dayOfWeekKo } from '../utils/dayOfWeek';
 import { CalendarContainer } from './Calendar.style';
 
 const Calendar = () => {
-  const dispatch = useDispatch();
-
+  const { days } = useSelector(currCalendar);
+  console.log(days);
   return (
     <CalendarContainer>
       <table>
