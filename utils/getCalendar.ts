@@ -10,10 +10,10 @@ export default function getCalendar({ select, current }: Calendar) {
   // this month calendar days
   const days = [];
 
-  const today = getNewDate(new Date());
-  const todayYear = today.year;
-  const todayMonth = today.month;
-  const todayDate = today.date;
+  const today = new Date();
+  const todayYear = today.getFullYear;
+  const todayMonth = today.getMonth;
+  const todayDate = today.getDate;
 
   const currYear = current.getFullYear();
   const currMonth = current.getMonth();
@@ -41,7 +41,7 @@ export default function getCalendar({ select, current }: Calendar) {
         fullDate: fullDate.toString(),
         date: date,
         day: fullDate.getDay(),
-        isToday: isToday(fullDate, current),
+        isToday: isToday(fullDate, today),
         isThisWeek: isThisWeek(fullDate, current),
         isCurrMonth: false,
       });
@@ -59,7 +59,7 @@ export default function getCalendar({ select, current }: Calendar) {
       fullDate: fullDate.toString(),
       date: date,
       day: fullDate.getDay(),
-      isToday: isToday(fullDate, current),
+      isToday: isToday(fullDate, today),
       isThisWeek: isThisWeek(fullDate, current),
       isCurrMonth: true,
     });
@@ -79,7 +79,7 @@ export default function getCalendar({ select, current }: Calendar) {
         fullDate: fullDate.toString(),
         date: date,
         day: fullDate.getDay(),
-        isToday: isToday(fullDate, current),
+        isToday: isToday(fullDate, today),
         isThisWeek: isThisWeek(fullDate, current),
         isCurrMonth: false,
       });

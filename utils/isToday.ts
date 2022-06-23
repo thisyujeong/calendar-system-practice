@@ -1,7 +1,7 @@
-export default function isToday(date: Date, current: Date): boolean {
-  const compareYear = date.getFullYear() === date.getFullYear();
-  const compareMonth = date.getMonth() === current.getMonth();
-  const compareDate = date.getDate() === current.getDate();
+export default function isToday(date: Date, today: Date): boolean {
+  const compareYear = date.getFullYear() === today.getFullYear();
+  const compareMonth = date.getMonth() === today.getMonth();
+  const compareDate = date.getDate() === today.getDate();
 
   return compareYear && compareMonth && compareDate;
 }
