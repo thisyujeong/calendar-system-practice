@@ -6,7 +6,7 @@ export const CalendarContainer = styled.div`
       display: table-cell;
       width: 30px;
       height: 38px;
-      color: #4190d6;
+      color: #29b48b;
     }
   }
 
@@ -20,7 +20,7 @@ export const CalendarContainer = styled.div`
       cursor: pointer;
 
       &.today {
-        color: #4190d6;
+        color: #29b48b;
         font-weight: bold;
       }
 

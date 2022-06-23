@@ -1,14 +1,25 @@
-import { ItemContainer, ItemHeader } from './WeeklyItem.style';
+import { Days } from '../../index';
+import { dayOfWeekEn } from '../../utils/dayOfWeek';
+import {
+  WeekItemContainer,
+  WeekItemHeader,
+  WeekItemDate,
+  WeekItemDay,
+} from './WeeklyItem.style';
 
 type WeeklyItemProps = {
-  day: string;
+  day: Days;
 };
 
 const WeekItem = ({ day }: WeeklyItemProps) => {
+  console.log('asdfasdfa', day);
   return (
-    <ItemContainer>
-      <ItemHeader>{day}</ItemHeader>
-    </ItemContainer>
+    <WeekItemContainer>
+      <WeekItemHeader isToday={day.isToday ? true : false}>
+        <WeekItemDate>{day.date}</WeekItemDate>
+        <WeekItemDay>{dayOfWeekEn[day.day]}</WeekItemDay>
+      </WeekItemHeader>
+    </WeekItemContainer>
   );
 };
 
