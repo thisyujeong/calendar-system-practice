@@ -12,7 +12,6 @@ type WeeklyItemProps = {
 };
 
 const WeekItem = ({ day }: WeeklyItemProps) => {
-  console.log('asdfasdfa', day);
   return (
     <WeekItemContainer>
       <WeekItemHeader isToday={day.isToday ? true : false}>

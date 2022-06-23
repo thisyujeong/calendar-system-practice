@@ -1,7 +1,12 @@
 import isThisWeek from './isThisWeek';
 import isToday from './isToday';
 
-export default function getCalendar({ current }: { current: Date }) {
+type Calendar = {
+  select: Date;
+  current: Date;
+};
+
+export default function getCalendar({ select, current }: Calendar) {
   // this month calendar days
   const days = [];
 
@@ -33,6 +38,7 @@ export default function getCalendar({ current }: { current: Date }) {
       const fullDate = new Date(year, month, date);
 
       days.push({
+        fullDate: fullDate.toString(),
         date: date,
         day: fullDate.getDay(),
         isToday: isToday(fullDate, current),
@@ -50,6 +56,7 @@ export default function getCalendar({ current }: { current: Date }) {
     const fullDate = new Date(year, month, date);
 
     days.push({
+      fullDate: fullDate.toString(),
       date: date,
       day: fullDate.getDay(),
       isToday: isToday(fullDate, current),
@@ -69,6 +76,7 @@ export default function getCalendar({ current }: { current: Date }) {
       const fullDate = new Date(year, month, date);
 
       days.push({
+        fullDate: fullDate.toString(),
         date: date,
         day: fullDate.getDay(),
         isToday: isToday(fullDate, current),

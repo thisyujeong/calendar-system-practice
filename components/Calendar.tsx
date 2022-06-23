@@ -1,13 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Days } from '../index';
-import { currCalendar } from '../store/modules/calendar';
+import { currCalendar, selectDate } from '../store/modules/calendar';
 import { dayOfWeekKo } from '../utils/dayOfWeek';
 import { CalendarContainer } from './Calendar.style';
 
 const Calendar = () => {
+  const dispatch = useDispatch();
   const { days } = useSelector(currCalendar);
   console.log('# days', days);
+
+  const onClickDate = (date: Days) => dispatch(selectDate(date.fullDate));
 
   return (
     <CalendarContainer>
@@ -29,6 +32,7 @@ const Calendar = () => {
                       key={d.date}
                       data-view={d.isCurrMonth ? true : false}
                       className={d.isToday ? 'today' : ''}
+                      onClick={() => onClickDate(d)}
                     >
                       {d.date}
                     </td>
