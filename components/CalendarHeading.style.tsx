@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const IndicatorContainer = styled.div``;
+export const CalendarHeadingContainer = styled.div``;
 
 export const YearText = styled.div`
   font-size: 32px;

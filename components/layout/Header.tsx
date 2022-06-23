@@ -1,11 +1,11 @@
-import YearIndicator from '../YearIndicator';
+import CalendarHeading from '../CalendarHeading';
 import { HeaderContainer, HeaderToolbar, Profile } from './Header.style';
 
 const Header = () => {
   return (
     <HeaderContainer>
       <HeaderToolbar>
-        <YearIndicator />
+        <CalendarHeading />
         <Profile></Profile>
       </HeaderToolbar>
     </HeaderContainer>

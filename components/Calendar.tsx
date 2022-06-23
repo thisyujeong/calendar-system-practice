@@ -7,7 +7,8 @@ import { CalendarContainer } from './Calendar.style';
 
 const Calendar = () => {
   const { days } = useSelector(currCalendar);
-  console.log(days);
+  console.log('# days', days);
+
   return (
     <CalendarContainer>
       <table>
@@ -24,7 +25,11 @@ const Calendar = () => {
               {i % 7 === 0 && (
                 <tr>
                   {days.slice(i, i + 7).map((d: Days) => (
-                    <td key={d.date} data-view={d.isCurrMonth ? true : false}>
+                    <td
+                      key={d.date}
+                      data-view={d.isCurrMonth ? true : false}
+                      className={d.isToday ? 'today' : ''}
+                    >
                       {d.date}
                     </td>
                   ))}
