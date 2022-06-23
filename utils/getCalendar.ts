@@ -1,3 +1,4 @@
+import isSelected from './isSelected';
 import isThisWeek from './isThisWeek';
 import isToday from './isToday';
 
@@ -11,9 +12,6 @@ export default function getCalendar({ select, current }: Calendar) {
   const days = [];
 
   const today = new Date();
-  const todayYear = today.getFullYear;
-  const todayMonth = today.getMonth;
-  const todayDate = today.getDate;
 
   const currYear = current.getFullYear();
   const currMonth = current.getMonth();
@@ -42,6 +40,7 @@ export default function getCalendar({ select, current }: Calendar) {
         date: date,
         day: fullDate.getDay(),
         isToday: isToday(fullDate, today),
+        isSelected: isSelected(select, fullDate),
         isThisWeek: isThisWeek(fullDate, current),
         isCurrMonth: false,
       });
@@ -60,6 +59,7 @@ export default function getCalendar({ select, current }: Calendar) {
       date: date,
       day: fullDate.getDay(),
       isToday: isToday(fullDate, today),
+      isSelected: isSelected(select, fullDate),
       isThisWeek: isThisWeek(fullDate, current),
       isCurrMonth: true,
     });
@@ -80,6 +80,7 @@ export default function getCalendar({ select, current }: Calendar) {
         date: date,
         day: fullDate.getDay(),
         isToday: isToday(fullDate, today),
+        isSelected: isSelected(select, fullDate),
         isThisWeek: isThisWeek(fullDate, current),
         isCurrMonth: false,
       });

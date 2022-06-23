@@ -31,10 +31,11 @@ const Calendar = () => {
                     <td
                       key={d.date}
                       data-view={d.isCurrMonth ? true : false}
+                      data-selected={d.isSelected ? true : false}
                       className={d.isToday ? 'today' : ''}
                       onClick={() => onClickDate(d)}
                     >
-                      {d.date}
+                      <span>{d.date}</span>
                     </td>
                   ))}
                 </tr>

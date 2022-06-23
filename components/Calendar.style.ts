@@ -19,7 +19,7 @@ export const CalendarContainer = styled.div`
       text-align: center;
       cursor: pointer;
 
-      &.today {
+      &.today span {
         color: #29b48b;
         font-weight: bold;
       }
@@ -31,6 +31,27 @@ export const CalendarContainer = styled.div`
 
     td[data-view='false'] {
       opacity: 0.5;
+    }
+
+    td[data-selected='true'] {
+      span {
+        position: relative;
+        color: #eff1f9;
+        font-weight: bold;
+        z-index: 2;
+      }
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, calc(-50% - 1px));
+        width: 24px;
+        height: 24px;
+        background: #29b48b;
+      }
     }
   }
 `;
