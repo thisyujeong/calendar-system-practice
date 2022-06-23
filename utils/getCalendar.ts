@@ -1,8 +1,12 @@
+import isThisWeek from './isThisWeek';
+import isToday from './isToday';
+
 export default function getCalendar({ current }: { current: Date }) {
   // this month calendar days
   const days = [];
 
   const today = getNewDate(new Date());
+  const todayYear = today.year;
   const todayMonth = today.month;
   const todayDate = today.date;
 
@@ -31,6 +35,8 @@ export default function getCalendar({ current }: { current: Date }) {
       days.push({
         date: date,
         day: fullDate.getDay(),
+        isToday: isToday(fullDate, current),
+        isThisWeek: isThisWeek(fullDate, current),
         isCurrMonth: false,
       });
     }
@@ -46,6 +52,8 @@ export default function getCalendar({ current }: { current: Date }) {
     days.push({
       date: date,
       day: fullDate.getDay(),
+      isToday: isToday(fullDate, current),
+      isThisWeek: isThisWeek(fullDate, current),
       isCurrMonth: true,
     });
   }
@@ -63,6 +71,8 @@ export default function getCalendar({ current }: { current: Date }) {
       days.push({
         date: date,
         day: fullDate.getDay(),
+        isToday: isToday(fullDate, current),
+        isThisWeek: isThisWeek(fullDate, current),
         isCurrMonth: false,
       });
     }
@@ -76,9 +86,6 @@ export function getNewDate(select: Date) {
   const month = select.getMonth() + 1;
   const date = select.getDate();
   const day = select.getDay();
-  const hours = select.getHours();
-  const minutes = select.getMinutes();
-  const seconds = select.getSeconds();
 
-  return { year, month, date, day, hours, minutes, seconds };
+  return { year, month, date, day };
 }
