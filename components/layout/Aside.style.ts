@@ -16,6 +16,7 @@ export const AsideToggle = styled.div<{ open: boolean }>`
   border: 2px solid #2c3e5020;
   background-color: #fff;
   transform: translateX(50%);
+  transition: all 0.2s ease;
   z-index: 10;
   cursor: pointer;
 
@@ -28,7 +29,7 @@ export const AsideToggle = styled.div<{ open: boolean }>`
     height: 10px;
     border-bottom: 2px solid #2c3e5050;
     border-right: 2px solid #2c3e5050;
-    transform: translate(-75%, -50%) rotate(-45deg);
+    transition: border 0.2s ease;
     transform: ${({ open }) =>
       open
         ? 'translate(-75%, -50%) rotate(-45deg)'

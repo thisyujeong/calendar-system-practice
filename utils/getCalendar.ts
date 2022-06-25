@@ -66,7 +66,7 @@ export default function getCalendar({ select, current }: Calendar) {
   }
 
   // preview date for next month of current month calendar
-  if (firstDay !== 0) {
+  if (lastDay !== 6) {
     // last day of prev month
     const firstDateOfNextMonth = new Date(currYear, currMonth + 1, 1);
     for (let i = 0; i < 7 - (lastDay + 1); i++) {
