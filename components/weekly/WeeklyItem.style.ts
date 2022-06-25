@@ -37,3 +37,15 @@ export const WeekItemDay = styled.span`
   font-size: 14px;
   font-weight: bold;
 `;
+
+export const WeekItemBody = styled.div`
+  margin-bottom: 20px;
+`;
+
+export const WeeklyList = styled.div`
+  position: relative;
+  background: url('/images/underline.svg');
+  background-size: 100% 38px;
+  background-repeat: repeat;
+  min-height: 190px;
+`;

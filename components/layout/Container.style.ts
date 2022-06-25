@@ -4,14 +4,13 @@ import { Common } from '../../styles/common';
 export const Container = styled.div`
   display: flex;
   position: relative;
-  /* grid-template-columns: 260px 1fr; */
   height: 100vh;
 `;
 
 export const Content = styled.div`
   position: relative;
   width: 100%;
-  /* grid-template-rows: ${Common.layout.headerHeight} 1fr; */
+  overflow: auto;
 `;
 
 export const Main = styled.main`
