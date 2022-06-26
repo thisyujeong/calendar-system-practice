@@ -69,7 +69,7 @@ export const AsideToggle = styled.div<{ open: boolean }>`
 `;
 
 export const AsideTitle = styled.h1`
-  padding: 21px 24px;
+  padding: 21px 30px;
   font-size: 28px;
   font-weight: bold;
   height: ${Common.layout.headerHeight};
