@@ -12,12 +12,14 @@ const dynamic = ({ isToday }: { isToday: boolean }) => {
   }
 };
 
-export const WeekItemContainer = styled.div`
+export const WeeklyItemContainer = styled.div`
   position: relative;
   padding: 12px;
+  display: flex;
+  flex-direction: column;
 `;
 
-export const WeekItemHeader = styled.div`
+export const WeeklyItemHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,19 +29,21 @@ export const WeekItemHeader = styled.div`
   ${dynamic}
 `;
 
-export const WeekItemDate = styled.span`
+export const WeeklyItemDate = styled.span`
   font-size: 32px;
   font-weight: bold;
 `;
 
-export const WeekItemDay = styled.span`
+export const WeeklyItemDay = styled.span`
   opacity: 0.4;
   font-size: 14px;
   font-weight: bold;
 `;
 
-export const WeekItemBody = styled.div`
-  margin-bottom: 20px;
+export const WeeklyItemBody = styled.div`
+  position: relative;
+  min-height: 304px;
+  height: 100%;
 `;
 
 export const WeeklyList = styled.div`
@@ -47,5 +51,45 @@ export const WeeklyList = styled.div`
   background: url('/images/underline.svg');
   background-size: 100% 38px;
   background-repeat: repeat;
-  min-height: 190px;
+  height: 100%;
+`;
+
+export const WeeklyInputBox = styled.div`
+  position: relative;
+  width: 100%;
+  height: 38px;
+  padding: 8px 12px;
+  line-height: 22px;
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: 0;
+    height: 38px;
+    line-height: 22px;
+    font-size: 16px;
+    padding: 8px 12px;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+    font-family: 'Ubuntu', 'GothicA1';
+
+    &:hover {
+      background: #f4f8f6fc;
+      border-color: #29b48b;
+    }
+
+    &:focus {
+      background: transparent;
+      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+      border-color: transparent;
+      border-radius: 4px;
+    }
+  }
+
+  div {
+    font-size: 16px;
+  }
 `;

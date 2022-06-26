@@ -1,65 +1,93 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Days } from '../../index';
 import { dayOfWeekEn } from '../../utils/dayOfWeek';
-import WeeklyInput from './WeeklyInput';
 import {
-  WeekItemContainer,
-  WeekItemHeader,
-  WeekItemDate,
-  WeekItemDay,
-  WeekItemBody,
+  WeeklyItemContainer,
+  WeeklyItemHeader,
+  WeeklyItemDate,
+  WeeklyItemDay,
+  WeeklyItemBody,
   WeeklyList,
+  WeeklyInputBox,
 } from './WeeklyItem.style';
 
 type WeeklyItemProps = {
   day: Days;
 };
 
+type InputData = {
+  text: string;
+  type: string;
+};
 const WeekItem = ({ day }: WeeklyItemProps) => {
-  const [inputArr, setInputArr] = useState<{ text: string }[]>([{ text: '' }]);
-  const [focusTarget, setFocusTarget] = useState(-1);
+  const [inputData, setInputData] = useState<InputData[]>([{ text: '', type: 'input' }]);
+  const [focusId, setFocusId] = useState(0);
+  const [inputText, setInputText] = useState<string>('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const onClickBody = (e: React.PointerEvent<HTMLDivElement>) => {
+  const onClickBody = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    if (inputArr.length !== 1) {
-      addInputHandler();
-    } else {
-      setFocusTarget(0);
-    }
-  };
+    inputRef.current?.focus();
+  }, []);
 
-  const addInputHandler = () => {
-    setInputArr(inputArr.concat({ text: '' }));
-    setFocusTarget(focusTarget + 1);
-  };
+  const addInputHandler = useCallback(() => {
+    setInputData(inputData.concat({ text: '', type: 'input' }));
+    setFocusId(focusId + 1);
+  }, [focusId, inputData]);
 
-  const removeInputHandler = (index: number) => {
-    inputArr.splice(index, 1);
-    setFocusTarget(focusTarget - 1);
-  };
+  const removeInputHandler = useCallback(() => {
+    inputData.splice(focusId, 1);
+    setFocusId(focusId - 1);
+  }, [focusId, inputData]);
 
-  useEffect(() => {});
+  const onChangeInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputText(e.target.value);
+  }, []);
+
+  const onBlurInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {}, []);
+
+  const onKeyPress = useCallback(
+    (e: React.KeyboardEvent<HTMLElement>) => {
+      if (e.key === 'Enter' && inputText !== '') {
+        inputData[focusId] = { text: inputText, type: 'item' };
+        addInputHandler();
+        setInputText('');
+      }
+    },
+    [focusId, inputData, inputText, addInputHandler]
+  );
 
   return (
-    <WeekItemContainer>
-      <WeekItemHeader isToday={day.isToday ? true : false}>
-        <WeekItemDate>{day.date}</WeekItemDate>
-        <WeekItemDay>{dayOfWeekEn[day.day]}</WeekItemDay>
-      </WeekItemHeader>
-      <WeekItemBody>
+    <WeeklyItemContainer>
+      <WeeklyItemHeader isToday={day.isToday ? true : false}>
+        <WeeklyItemDate>{day.date}</WeeklyItemDate>
+        <WeeklyItemDay>{dayOfWeekEn[day.day]}</WeeklyItemDay>
+      </WeeklyItemHeader>
+      <WeeklyItemBody>
         <WeeklyList onClick={onClickBody}>
-          {inputArr.map((input, i) => (
-            <WeeklyInput
-              key={i}
-              index={focusTarget}
-              addInputHandler={addInputHandler}
-              removeInputHandler={removeInputHandler}
-              focusable={focusTarget === i ? true : false}
-            />
+          {inputData.map((data, i) => (
+            <WeeklyInputBox key={i}>
+              <>
+                {data.type === 'input' ? (
+                  <input
+                    type="text"
+                    ref={inputRef}
+                    onChange={onChangeInput}
+                    onKeyPress={onKeyPress}
+                    onBlur={onBlurInput}
+                    autoFocus
+                  />
+                ) : (
+                  <div>
+                    <span>{data.text}</span>
+                  </div>
+                )}
+              </>
+            </WeeklyInputBox>
           ))}
         </WeeklyList>
-      </WeekItemBody>
-    </WeekItemContainer>
+      </WeeklyItemBody>
+    </WeeklyItemContainer>
   );
 };
 
