@@ -14,6 +14,6 @@ export const Content = styled.div`
 `;
 
 export const Main = styled.main`
-  padding: 16px 40px;
+  padding: 46px 40px 16px;
   height: ${Common.layout.bodyHeight};
 `;

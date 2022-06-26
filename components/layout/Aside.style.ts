@@ -28,6 +28,7 @@ const dynamicToggle = ({ open }: { open: boolean }) => {
     `;
   }
 };
+
 export const AsideToggle = styled.div<{ open: boolean }>`
   position: absolute;
   top: 58px;
@@ -63,14 +64,15 @@ export const AsideToggle = styled.div<{ open: boolean }>`
   &:hover,
   &:hover:after {
     border-color: #29b48b;
+    background: #f4f8f6fc;
   }
 `;
 
 export const AsideTitle = styled.h1`
-  padding: 0 24px;
+  padding: 21px 24px;
   font-size: 28px;
   font-weight: bold;
-  line-height: ${Common.layout.headerHeight};
+  height: ${Common.layout.headerHeight};
 
   svg {
     width: 36px;
@@ -83,6 +85,6 @@ export const AsideTitle = styled.h1`
 `;
 
 export const AsideContent = styled.div`
-  padding: 16px 24px;
+  padding: 46px 24px 16px;
   height: ${Common.layout.bodyHeight};
 `;

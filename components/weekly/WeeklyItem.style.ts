@@ -58,8 +58,6 @@ export const WeeklyInputBox = styled.div`
   position: relative;
   width: 100%;
   height: 38px;
-  padding: 8px 12px;
-  line-height: 22px;
 
   input {
     position: absolute;
@@ -69,7 +67,7 @@ export const WeeklyInputBox = styled.div`
     border: 0;
     height: 38px;
     line-height: 22px;
-    font-size: 16px;
+    font-size: 14px;
     padding: 8px 12px;
     background: transparent;
     border-bottom: 1px solid transparent;
@@ -90,6 +88,15 @@ export const WeeklyInputBox = styled.div`
   }
 
   div {
-    font-size: 16px;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 22px;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+
+    &:hover {
+      background: #f4f8f6fc;
+      border-color: #29b48b;
+    }
   }
 `;
