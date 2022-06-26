@@ -1,5 +1,7 @@
 @charset "utf-8";
 
+@import './fonts.css';
+
 /* default */
 body,
 div,
@@ -144,7 +146,7 @@ body {
   overflow-x: hidden;
   word-break: keep-all;
   word-wrap: break-word;
-  font-family: 'Ubuntu', 'GothicA1';
+  font-family: 'Rubik', 'Ubuntu', 'GothicA1';
   font-weight: normal;
   /* background: #f9fafb; */
 }
