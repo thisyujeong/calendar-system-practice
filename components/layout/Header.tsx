@@ -1,12 +1,15 @@
 import CalendarHeading from '../CalendarHeading';
-import { HeaderContainer, HeaderToolbar, Profile } from './Header.style';
-
+import ThemeToggle from '../ThemeToggle';
+import { HeaderContainer, HeaderToolbar, Group, Profile } from './Header.style';
 const Header = () => {
   return (
     <HeaderContainer>
       <HeaderToolbar>
         <CalendarHeading />
-        <Profile></Profile>
+        <Group>
+          <ThemeToggle />
+          <Profile></Profile>
+        </Group>
       </HeaderToolbar>
     </HeaderContainer>
   );

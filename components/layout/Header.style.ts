@@ -16,10 +16,15 @@ export const HeaderToolbar = styled.div`
   justify-content: space-between;
 `;
 
+export const Group = styled.div`
+  display: flex;
+  align-items: center;
+`;
 export const Profile = styled.div`
   position: relative;
   width: 40px;
   height: 40px;
+  margin-left: 20px;
   border-radius: 100%;
   background-color: #00000010;
 `;

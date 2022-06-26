@@ -31,7 +31,7 @@ const dynamicToggle = ({ open }: { open: boolean }) => {
 
 export const AsideToggle = styled.div<{ open: boolean }>`
   position: absolute;
-  top: 58px;
+  top: 75px;
   right: 0;
   width: 36px;
   height: 36px;
