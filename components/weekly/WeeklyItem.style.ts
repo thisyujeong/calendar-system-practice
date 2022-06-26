@@ -30,7 +30,7 @@ export const WeeklyItemHeader = styled.div`
 `;
 
 export const WeeklyItemDate = styled.span`
-  font-size: 32px;
+  font-size: 24px;
   font-weight: bold;
 `;
 
