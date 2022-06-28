@@ -44,6 +44,12 @@ export const WeeklyItemBody = styled.div`
   position: relative;
   min-height: 304px;
   height: 100%;
+
+  &:hover {
+    input {
+      border-bottom: 1px solid var(--accent);
+    }
+  }
 `;
 
 export const WeeklyList = styled.div`
@@ -68,27 +74,30 @@ export const WeeklyInputBox = styled.div`
 
   input {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
     width: 100%;
-    border: 0;
     height: 38px;
-    line-height: 22px;
-    font-size: 14px;
     padding: 8px 12px;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--text);
+    border: 0;
     background: transparent;
     border-bottom: 1px solid transparent;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
     font-family: 'Ubuntu', 'GothicA1';
-    color: #000;
+    transform: translate(-50%, -50%);
+
     &:hover {
-      background: #f4f8f6fc;
-      border-color: var(--accent);
+      background: var(--input-hover-bg);
     }
 
     &:focus {
-      background: transparent;
-      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+      width: calc(100% + 12px);
+      height: 42px;
+      background: var(--input-bg);
+      box-shadow: var(--input-shadow);
       border-color: transparent;
       border-radius: 4px;
     }
@@ -103,7 +112,6 @@ export const WeeklyInputBox = styled.div`
 
     &:hover {
       background: #f4f8f6fc;
-      border-color: var(--accent);
     }
   }
 `;
