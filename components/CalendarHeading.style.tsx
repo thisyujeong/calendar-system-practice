@@ -21,10 +21,11 @@ export const HeadingExploreControl = styled.div`
     width: 30px;
     height: 30px;
     text-indent: -99999999px;
-    background-image: url('/images/arrow.png');
-    background-size: 20px 20px;
-    background-repeat: no-repeat;
-    background-position: center;
+    background: var(--text);
+    mask-image: url('/images/arrow.png');
+    mask-size: 20px 20px;
+    mask-repeat: no-repeat;
+    mask-position: center;
     opacity: 0.6;
     cursor: pointer;
 
@@ -45,14 +46,14 @@ export const FlexGroup = styled.div`
 export const TodayBtn = styled.button`
   margin-left: 20px;
   padding: 4px 12px;
-  color: #29b48b;
+  color: var(--accent);
   border: 1px solid transparent;
   border-radius: 6px;
-  background-color: #ecf7f1fc;
+  background-color: var(--primary);
   transition: border 0.2s ease, transform 0.1s ease;
 
   &:hover {
-    border: 1px solid #29b48b;
+    border: 1px solid var(--accent);
   }
 
   &:active {

@@ -4,8 +4,8 @@ import { css } from '@emotion/react';
 
 export const AsideContainer = styled.section<{ open: boolean }>`
   position: relative;
-  min-width: ${({ open }) => (open ? '260px' : '0')};
-  border-right: 2px solid #2c3e5010;
+  min-width: ${({ open }) => (open ? '260px' : '16px')};
+  border-right: 2px solid var(--border-color);
   transition: min-width 0.2s ease;
 `;
 
@@ -20,11 +20,12 @@ export const AsideInner = styled.div<{ open: boolean }>`
 const dynamicToggle = ({ open }: { open: boolean }) => {
   if (!open) {
     return css`
-      right: -12px;
+      right: -14px;
       width: 30px;
       border-radius: 0;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
+      border-left: 0;
     `;
   }
 };
@@ -36,8 +37,8 @@ export const AsideToggle = styled.div<{ open: boolean }>`
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 2px solid #2c3e5020;
-  background-color: #fff;
+  border: 2px solid var(--border-color);
+  background-color: var(--bg);
   transform: translateX(50%);
   transition: all 0.2s ease;
   z-index: 10;
@@ -52,8 +53,8 @@ export const AsideToggle = styled.div<{ open: boolean }>`
     left: 50%;
     width: 10px;
     height: 10px;
-    border-bottom: 2px solid #2c3e5050;
-    border-right: 2px solid #2c3e5050;
+    border-bottom: 2px solid var(--toggle-icon-50);
+    border-right: 2px solid var(--toggle-icon-50);
     transition: border 0.2s ease;
     transform: ${({ open }) =>
       open
@@ -63,8 +64,7 @@ export const AsideToggle = styled.div<{ open: boolean }>`
 
   &:hover,
   &:hover:after {
-    border-color: #29b48b;
-    background: #f4f8f6fc;
+    border-color: var(--accent);
   }
 `;
 

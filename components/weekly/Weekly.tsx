@@ -1,9 +1,13 @@
+import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { currCalendar } from '../../store/modules/calendar';
 import getThisWeek from '../../utils/getThisWeek';
 import { WeeklyContainer } from './Weekly.style';
-import WeeklyItem from './WeeklyItem';
+
+const WeeklyItem = dynamic(() => import('./WeeklyItem'), {
+  ssr: false,
+});
 
 const Weekly = () => {
   const { days } = useSelector(currCalendar);

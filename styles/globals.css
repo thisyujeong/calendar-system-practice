@@ -148,12 +148,13 @@ body {
   word-wrap: break-word;
   font-family: 'Rubik', 'Ubuntu', 'GothicA1';
   font-weight: normal;
-  /* background: #f9fafb; */
+  transition: background 0.2s ease;
+  background: var(--bg);
 }
 * {
   font-size: inherit;
   line-height: 1.4em;
-  color: #2c3e50;
+  color: var(--text);
   box-sizing: border-box;
 }
 *:focus {
@@ -166,11 +167,21 @@ body {
 }
 
 body[data-theme='dark'] {
-  --bg: #fff;
-  --text: #2c3e50;
+  --bg: #292929;
+  --text: #e3ecef;
+  --toggle-icon: #e3ecef;
+  --toggle-icon-50: #e3ecef50;
+  --toggle-icon-bg: #f9f7ef10;
+  --border-color: #e3ecef10;
+  --primary: #a0ffca17;
 }
 
-body[data-theme='dark'] {
-  --bg: #292929;
-  --text: #fff;
+body[data-theme='light'] {
+  --bg: #fff;
+  --text: #2c3e50;
+  --toggle-icon: #2c3e50;
+  --toggle-icon-50: #2c3e5050;
+  --toggle-icon-bg: #f6f6f7;
+  --border-color: #2c3e5010;
+  --primary: #ecf7f1fc;
 }

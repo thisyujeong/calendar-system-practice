@@ -24,10 +24,11 @@ export const ExploreControl = styled.div`
     height: 20px;
     margin-left: 8px;
     text-indent: -99999999px;
-    background-image: url('/images/arrow.png');
-    background-size: 20px 20px;
-    background-repeat: no-repeat;
-    background-position: center;
+    background: var(--text);
+    mask-image: url('/images/arrow.png');
+    mask-size: 20px 20px;
+    mask-repeat: no-repeat;
+    mask-position: center;
     opacity: 0.6;
     cursor: pointer;
 
@@ -47,7 +48,7 @@ export const CalendarTable = styled.table`
       display: table-cell;
       width: 30px;
       height: 38px;
-      color: #29b48b;
+      color: var(--accent);
     }
   }
 
@@ -66,7 +67,7 @@ export const CalendarTable = styled.table`
       }
 
       &.today span {
-        color: #29b48b;
+        color: var(--accent);
         font-weight: bold;
       }
 
@@ -109,7 +110,7 @@ export const CalendarTable = styled.table`
           transform: translate(-50%, calc(-50% - 1px));
           width: 24px;
           height: 24px;
-          background: #29b48b;
+          background: var(--accent);
         }
       }
     }

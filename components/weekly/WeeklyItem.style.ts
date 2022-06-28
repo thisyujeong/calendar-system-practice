@@ -5,9 +5,9 @@ const dynamic = ({ isToday }: { isToday: boolean }) => {
   if (isToday) {
     return css`
       * {
-        color: #29b48b;
+        color: var(--accent);
       }
-      border-color: #29b48b;
+      border-color: var(--accent);
     `;
   }
 };
@@ -23,7 +23,7 @@ export const WeeklyItemHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #2c3e50;
+  border-bottom: 2px solid var(--text);
   padding-left: 4px;
 
   ${dynamic}
@@ -48,10 +48,17 @@ export const WeeklyItemBody = styled.div`
 
 export const WeeklyList = styled.div`
   position: relative;
-  background: url('/images/underline.svg');
-  background-size: 100% 38px;
-  background-repeat: repeat;
   height: 100%;
+  &:before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    mask-size: 100% 38px;
+    mask-repeat: repeat;
+    mask-image: url('/images/underline.svg');
+    background-color: var(--text);
+  }
 `;
 
 export const WeeklyInputBox = styled.div`
@@ -73,10 +80,10 @@ export const WeeklyInputBox = styled.div`
     border-bottom: 1px solid transparent;
     transition: all 0.2s ease;
     font-family: 'Ubuntu', 'GothicA1';
-
+    color: #000;
     &:hover {
       background: #f4f8f6fc;
-      border-color: #29b48b;
+      border-color: var(--accent);
     }
 
     &:focus {
@@ -96,7 +103,7 @@ export const WeeklyInputBox = styled.div`
 
     &:hover {
       background: #f4f8f6fc;
-      border-color: #29b48b;
+      border-color: var(--accent);
     }
   }
 `;
