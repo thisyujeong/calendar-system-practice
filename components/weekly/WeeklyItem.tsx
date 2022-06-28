@@ -23,11 +23,17 @@ const WeekItem = ({ day }: WeeklyItemProps) => {
   const [inputData, setInputData] = useState<InputData[]>([{ text: '', type: 'input' }]);
   const [focusId, setFocusId] = useState(0);
   const [inputText, setInputText] = useState<string>('');
+  const [isFocus, setFocus] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isFocus) inputRef.current?.focus();
+  }, [isFocus, focusId]);
 
   const onClickBody = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
     e.stopPropagation();
     inputRef.current?.focus();
+    setFocus(true);
   }, []);
 
   const addInputHandler = useCallback(() => {
@@ -50,8 +56,9 @@ const WeekItem = ({ day }: WeeklyItemProps) => {
     (e: React.KeyboardEvent<HTMLElement>) => {
       if (e.key === 'Enter' && inputText !== '') {
         inputData[focusId] = { text: inputText, type: 'item' };
-        addInputHandler();
         setInputText('');
+        addInputHandler();
+        setFocus(true);
       }
     },
     [focusId, inputData, inputText, addInputHandler]
@@ -75,7 +82,8 @@ const WeekItem = ({ day }: WeeklyItemProps) => {
                     onChange={onChangeInput}
                     onKeyPress={onKeyPress}
                     onBlur={onBlurInput}
-                    autoFocus
+                    autoComplete="none"
+                    // autoFocus
                   />
                 ) : (
                   <div>
