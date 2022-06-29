@@ -78,7 +78,7 @@ export const WeeklyInputBox = styled.div`
     left: 50%;
     width: 100%;
     height: 38px;
-    padding: 8px 12px;
+    padding: 8px 18px;
     font-size: 14px;
     line-height: 22px;
     color: var(--text);
@@ -111,7 +111,7 @@ export const WeeklyInputBox = styled.div`
     cursor: pointer;
 
     &:hover {
-      background: #f4f8f6fc;
+      background: var(--input-hover-bg);
     }
   }
 `;

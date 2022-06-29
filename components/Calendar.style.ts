@@ -81,7 +81,7 @@ export const CalendarTable = styled.table`
           transform: translate(-50%, calc(-50% - 1px));
           width: 24px;
           height: 24px;
-          background: #eff1f9;
+          background: var(--date-hover);
           opacity: 0;
         }
         &:hover:after {

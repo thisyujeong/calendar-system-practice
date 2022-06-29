@@ -19,6 +19,7 @@ type InputData = {
   text: string;
   type: string;
 };
+
 const WeekItem = ({ day }: WeeklyItemProps) => {
   const [inputData, setInputData] = useState<InputData[]>([{ text: '', type: 'input' }]);
   const [focusId, setFocusId] = useState(0);
@@ -41,16 +42,9 @@ const WeekItem = ({ day }: WeeklyItemProps) => {
     setFocusId(focusId + 1);
   }, [focusId, inputData]);
 
-  const removeInputHandler = useCallback(() => {
-    inputData.splice(focusId, 1);
-    setFocusId(focusId - 1);
-  }, [focusId, inputData]);
-
   const onChangeInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
   }, []);
-
-  const onBlurInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {}, []);
 
   const onKeyPress = useCallback(
     (e: React.KeyboardEvent<HTMLElement>) => {
@@ -81,7 +75,6 @@ const WeekItem = ({ day }: WeeklyItemProps) => {
                     ref={inputRef}
                     onChange={onChangeInput}
                     onKeyPress={onKeyPress}
-                    onBlur={onBlurInput}
                     autoComplete="none"
                     // autoFocus
                   />
