@@ -46,7 +46,7 @@ export const WeeklyItemBody = styled.div`
   height: 100%;
 
   &:hover {
-    input {
+    input:not(:focus) {
       border-bottom: 1px solid var(--accent);
     }
   }
@@ -71,47 +71,47 @@ export const WeeklyInputBox = styled.div`
   position: relative;
   width: 100%;
   height: 38px;
+`;
 
-  input {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 38px;
-    padding: 8px 18px;
-    font-size: 14px;
-    line-height: 22px;
-    color: var(--text);
-    border: 0;
-    background: transparent;
-    border-bottom: 1px solid transparent;
-    transition: background 0.2s ease, box-shadow 0.2s ease;
-    font-family: 'Ubuntu', 'GothicA1';
-    transform: translate(-50%, -50%);
+export const TodoInputItem = styled.input`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 38px;
+  padding: 8px 18px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--text);
+  border: 0;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  font-family: 'Ubuntu', 'GothicA1';
+  transform: translate(-50%, -50%);
 
-    &:hover {
-      background: var(--input-hover-bg);
-    }
-
-    &:focus {
-      width: calc(100% + 12px);
-      height: 42px;
-      background: var(--input-bg);
-      box-shadow: var(--input-shadow);
-      border-color: transparent;
-      border-radius: 4px;
-    }
+  &:hover {
+    background: var(--input-hover-bg);
   }
 
-  div {
-    padding: 8px 12px;
-    font-size: 14px;
-    line-height: 22px;
-    border-bottom: 1px solid transparent;
-    cursor: pointer;
+  &:focus {
+    width: calc(100% + 12px);
+    height: 42px;
+    background: var(--input-bg);
+    box-shadow: var(--input-shadow);
+    border-color: transparent;
+    border-radius: 4px;
+  }
+`;
 
-    &:hover {
-      background: var(--input-hover-bg);
-    }
+export const TodoItemBox = styled.div`
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 22px;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--input-hover-bg);
   }
 `;

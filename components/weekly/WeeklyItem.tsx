@@ -9,6 +9,8 @@ import {
   WeeklyItemBody,
   WeeklyList,
   WeeklyInputBox,
+  TodoInputItem,
+  TodoItemBox,
 } from './WeeklyItem.style';
 
 type WeeklyItemProps = {
@@ -18,13 +20,17 @@ type WeeklyItemProps = {
 type InputData = {
   text: string;
   type: string;
+  checked: boolean;
 };
 
 const WeekItem = ({ day }: WeeklyItemProps) => {
-  const [inputData, setInputData] = useState<InputData[]>([{ text: '', type: 'input' }]);
+  const [inputData, setInputData] = useState<InputData[]>([
+    { text: '', type: 'input', checked: false },
+  ]);
   const [focusId, setFocusId] = useState(0);
   const [inputText, setInputText] = useState<string>('');
   const [isFocus, setFocus] = useState<boolean>(false);
+  const [checked, setChecked] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -38,7 +44,7 @@ const WeekItem = ({ day }: WeeklyItemProps) => {
   }, []);
 
   const addInputHandler = useCallback(() => {
-    setInputData(inputData.concat({ text: '', type: 'input' }));
+    setInputData(inputData.concat({ text: '', type: 'input', checked: false }));
     setFocusId(focusId + 1);
   }, [focusId, inputData]);
 
@@ -49,7 +55,7 @@ const WeekItem = ({ day }: WeeklyItemProps) => {
   const onKeyPress = useCallback(
     (e: React.KeyboardEvent<HTMLElement>) => {
       if (e.key === 'Enter' && inputText !== '') {
-        inputData[focusId] = { text: inputText, type: 'item' };
+        inputData[focusId] = { text: inputText, type: 'item', checked: false };
         setInputText('');
         addInputHandler();
         setFocus(true);
@@ -70,7 +76,7 @@ const WeekItem = ({ day }: WeeklyItemProps) => {
             <WeeklyInputBox key={i}>
               <>
                 {data.type === 'input' ? (
-                  <input
+                  <TodoInputItem
                     type="text"
                     ref={inputRef}
                     onChange={onChangeInput}
@@ -79,9 +85,9 @@ const WeekItem = ({ day }: WeeklyItemProps) => {
                     // autoFocus
                   />
                 ) : (
-                  <div>
+                  <TodoItemBox>
                     <span>{data.text}</span>
-                  </div>
+                  </TodoItemBox>
                 )}
               </>
             </WeeklyInputBox>
