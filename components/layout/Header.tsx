@@ -1,19 +1,33 @@
-import { signIn, signOut, useSession } from 'next-auth/react';
-import { HeaderContainer, HeaderToolbar, Group, LoginBtn } from './Header.style';
+import { signIn, useSession } from 'next-auth/react';
+import {
+  HeaderContainer,
+  HeaderToolbar,
+  HeaderGroup,
+  HeaderLoginBtn,
+  HeaderProfileBox,
+  HeaderProfile,
+} from './Header.style';
 import CalendarHeading from '../Calendar/CalendarHeading';
 import ThemeToggle from '../ThemeToggle';
-import Profile from '../Profile';
+import ProfileLayer from '../ProfileLayer';
+import { useState } from 'react';
+import Image from 'next/image';
 const Header = () => {
   const { data: session } = useSession();
-  console.log(typeof session?.user?.image);
+  const [isOpenLayer, setIsOpenLayer] = useState<boolean>(false);
+
+  const onClickLayerHandler = () => {
+    setIsOpenLayer(!isOpenLayer);
+  };
+
   return (
     <HeaderContainer>
       <HeaderToolbar>
         <CalendarHeading />
-        <Group>
+        <HeaderGroup>
           <ThemeToggle />
           {!session && (
-            <LoginBtn>
+            <HeaderLoginBtn>
               <a
                 href={'/api/auth/signin'}
                 onClick={(e) => {
@@ -21,23 +35,21 @@ const Header = () => {
                   signIn('google');
                 }}
               />
-            </LoginBtn>
+            </HeaderLoginBtn>
           )}
           {session?.user && (
-            <>
-              <Profile image={session.user.image!} name={session.user.name!} />
-              <a
-                href={'/api/auth/signout'}
-                onClick={(e) => {
-                  e.preventDefault();
-                  signOut();
-                }}
-              >
-                로그아웃
-              </a>
-            </>
+            <HeaderProfileBox>
+              <HeaderProfile onClick={onClickLayerHandler}>
+                <Image
+                  src={session.user.image!}
+                  alt={`${session.user.name!}님의 프로필 이미지`}
+                  layout="fill"
+                />
+              </HeaderProfile>
+              {isOpenLayer && <ProfileLayer onClickLayer={onClickLayerHandler} />}
+            </HeaderProfileBox>
           )}
-        </Group>
+        </HeaderGroup>
       </HeaderToolbar>
     </HeaderContainer>
   );

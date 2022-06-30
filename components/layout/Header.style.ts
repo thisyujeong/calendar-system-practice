@@ -16,13 +16,13 @@ export const HeaderToolbar = styled.div`
   justify-content: space-between;
 `;
 
-export const Group = styled.div`
+export const HeaderGroup = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const LoginBtn = styled.div`
-  margin-left: 10px;
+export const HeaderLoginBtn = styled.div`
+  margin-left: 15px;
   a {
     position: relative;
     display: block;
@@ -56,5 +56,25 @@ export const LoginBtn = styled.div`
     &:active {
       transform: scale(0.9);
     }
+  }
+`;
+
+export const HeaderProfileBox = styled.div`
+  position: relative;
+`;
+
+export const HeaderProfile = styled.div`
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin-left: 15px;
+  border-radius: 40%;
+  overflow: hidden;
+  z-index: 20;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
   }
 `;
