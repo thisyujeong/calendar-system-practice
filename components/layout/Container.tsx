@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import Calendar from '../Calendar';
+import Calendar from '../Calendar/Calendar';
 import Aside from './Aside';
 import { Container, Content, Main } from './Container.style';
 

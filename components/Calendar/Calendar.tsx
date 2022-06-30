@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Days } from '../index';
+import { Days } from '../../index';
 import {
   currCalendar,
   nextMonth,
   prevMonth,
   selectDate,
-} from '../store/modules/calendar';
-import { dayOfWeekKo } from '../utils/dayOfWeek';
+} from '../../store/modules/calendar';
+import { dayOfWeekKo } from '../../utils/dayOfWeek';
 import {
   CalendarContainer,
   CalendarExplore,

@@ -1,6 +1,6 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { HeaderContainer, HeaderToolbar, Group, LoginBtn } from './Header.style';
-import CalendarHeading from '../CalendarHeading';
+import CalendarHeading from '../Calendar/CalendarHeading';
 import ThemeToggle from '../ThemeToggle';
 import Profile from '../Profile';
 const Header = () => {

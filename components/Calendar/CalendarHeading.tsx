@@ -4,8 +4,8 @@ import {
   nextMonth,
   prevMonth,
   selectDate,
-} from '../store/modules/calendar';
-import dateFormat from '../utils/dateFormat';
+} from '../../store/modules/calendar';
+import dateFormat from '../../utils/dateFormat';
 import {
   CalendarHeadingContainer,
   HeadingDate,
