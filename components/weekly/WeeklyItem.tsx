@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { Days } from '../../index';
 import { dayOfWeekEn } from '../../utils/dayOfWeek';
+import { useSession } from 'next-auth/react';
+import { Days } from '../../index';
 import {
   WeeklyItemContainer,
   WeeklyItemHeader,
@@ -18,6 +19,7 @@ type WeeklyItemProps = {
 };
 
 type InputData = {
+  date: string;
   text: string;
   type: string;
   checked: boolean;
@@ -25,7 +27,7 @@ type InputData = {
 
 const WeekItem = ({ day }: WeeklyItemProps) => {
   const [inputData, setInputData] = useState<InputData[]>([
-    { text: '', type: 'input', checked: false },
+    { date: day.fullDate.toString(), text: '', type: 'input', checked: false },
   ]);
   const [focusId, setFocusId] = useState(0);
   const [inputText, setInputText] = useState<string>('');
@@ -44,18 +46,31 @@ const WeekItem = ({ day }: WeeklyItemProps) => {
   }, []);
 
   const addInputHandler = useCallback(() => {
-    setInputData(inputData.concat({ text: '', type: 'input', checked: false }));
+    setInputData(
+      inputData.concat({
+        date: day.fullDate.toString(),
+        text: '',
+        type: 'input',
+        checked: false,
+      })
+    );
     setFocusId(focusId + 1);
-  }, [focusId, inputData]);
+  }, [day.fullDate, focusId, inputData]);
 
   const onChangeInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
   }, []);
 
+  const onBlurInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {}, []);
+
   const onKeyPress = useCallback(
     (e: React.KeyboardEvent<HTMLElement>) => {
       if (e.key === 'Enter' && inputText !== '') {
-        inputData[focusId] = { text: inputText, type: 'item', checked: false };
+        inputData[focusId] = {
+          ...inputData[focusId],
+          text: inputText,
+          type: 'item',
+        };
         setInputText('');
         addInputHandler();
         setFocus(true);
@@ -80,6 +95,7 @@ const WeekItem = ({ day }: WeeklyItemProps) => {
                     type="text"
                     ref={inputRef}
                     onChange={onChangeInput}
+                    onBlur={onBlurInput}
                     onKeyPress={onKeyPress}
                     autoComplete="none"
                     // autoFocus

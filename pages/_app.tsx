@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import App from 'next/app';
 import type { AppProps } from 'next/app';
 import { wrapper } from '../store';
 import { SessionProvider } from 'next-auth/react';

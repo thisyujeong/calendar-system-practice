@@ -19,7 +19,6 @@ import {
 const Calendar = () => {
   const dispatch = useDispatch();
   const { month, year, days } = useSelector(currCalendar);
-  console.log('# days', days);
 
   const onClickDate = (date: Days) => dispatch(selectDate(date.fullDate));
   const onClickPrev = () => dispatch(nextMonth());
