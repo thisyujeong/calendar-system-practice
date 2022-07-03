@@ -1,25 +1,37 @@
-import { useEffect } from 'react';
-import { getSession, useSession } from 'next-auth/react';
 import LayoutContianer from '../components/layout/Container';
 import Weekly from '../components/weekly/Weekly';
 import axios from 'axios';
 import type { InferGetStaticPropsType } from 'next';
+import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { Task } from '../models/Task';
 
-const Home = ({ tasks }: InferGetStaticPropsType<typeof getServerSideProps>) => {
-  console.log('tasks', tasks);
-  useEffect(() => {}, []);
+const Home = ({ allTasks }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const { data: session } = useSession();
+  const [tasks, setTasks] = useState<Task | null>(null);
+
+  useEffect(() => {
+    if (session?.user) {
+      const { email } = session.user;
+      const t = allTasks.filter((task: Task) => task.uid === email);
+      setTasks(t);
+    }
+  }, [allTasks, session?.user]);
+
   return (
     <LayoutContianer>
-      <Weekly />
+      <Weekly tasks={tasks} />
     </LayoutContianer>
   );
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const { data } = await axios.get('http://localhost:3000/api/tasks');
-  const tasks = data.data;
+  const allTasks = data.data;
+
   return {
-    props: { tasks },
+    props: { allTasks },
+    revalidate: 1,
   };
 };
 

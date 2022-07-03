@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { InferSchemaType } from 'mongoose';
 
 const TaskSchema = new mongoose.Schema({
   uid: {
@@ -19,4 +19,5 @@ const TaskSchema = new mongoose.Schema({
   ],
 });
 
+export type Task = InferSchemaType<typeof TaskSchema>;
 export default mongoose.models.Task || mongoose.model('Task', TaskSchema);
