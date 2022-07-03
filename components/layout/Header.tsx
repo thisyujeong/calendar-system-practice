@@ -10,11 +10,21 @@ import {
 import CalendarHeading from '../Calendar/CalendarHeading';
 import ThemeToggle from '../ThemeToggle';
 import ProfileLayer from '../ProfileLayer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useDispatch } from 'react-redux';
+import { authLogin, authLogout } from '../../store/modules/auth';
+import { RootState } from '../../store';
+
 const Header = () => {
+  const dispatch = useDispatch();
   const { data: session } = useSession();
   const [isOpenLayer, setIsOpenLayer] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (session) dispatch(authLogin(session.user as RootState));
+    else dispatch(authLogout());
+  }, [dispatch, session]);
 
   const onClickLayerHandler = () => {
     setIsOpenLayer(!isOpenLayer);
