@@ -4,17 +4,17 @@ import { Days } from '../../index';
 import getCalendar from '../../utils/getCalendar';
 import getMonth from '../../utils/getMonth';
 
-type CurrentCalendar = {
+export interface CurrentCalendar {
   fullDate: string;
   days: Days[];
   month: number;
   year: number;
-};
+}
 
-type Calendar = {
+export interface Calendar {
   select: string;
   current: CurrentCalendar;
-};
+}
 
 const today = new Date();
 const initCalendar = getCalendar({ select: today, current: today });

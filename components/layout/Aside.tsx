@@ -23,7 +23,7 @@ const Aside = ({ children }: AsideProps) => {
         }}
       ></AsideToggle>
       <AsideInner open={isAsideOpen}>
-        <AsideTitle>Weekple</AsideTitle>
+        <AsideTitle>Weekply</AsideTitle>
         <AsideContent>{children}</AsideContent>
       </AsideInner>
     </AsideContainer>

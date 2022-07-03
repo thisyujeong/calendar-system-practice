@@ -1,17 +1,12 @@
 import { AnyAction, combineReducers } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
-
-import calendar from './calendar';
-
-export interface InitValue {
-  current: Date;
-}
+import calendar, { Calendar } from './calendar';
 
 export interface InitState {
-  calendar: InitValue;
+  calendar: Calendar;
 }
 
-const rootReducer = (state: InitState | undefined, action: AnyAction) => {
+const rootReducer = (state: InitState, action: AnyAction) => {
   if (action.type === HYDRATE) {
     return {
       ...state,
