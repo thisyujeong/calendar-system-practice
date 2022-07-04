@@ -1,23 +1,12 @@
 import LayoutContianer from '../components/layout/Container';
 import Weekly from '../components/weekly/Weekly';
 import axios from 'axios';
-import type { InferGetStaticPropsType } from 'next';
-import { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
+import { RootState } from '../store';
+import { getSession } from 'next-auth/react';
 import { Task } from '../models/Task';
+import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 
-const Home = ({ allTasks }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const { data: session } = useSession();
-  const [tasks, setTasks] = useState<Task | null>(null);
-
-  useEffect(() => {
-    if (session?.user) {
-      const { email } = session.user;
-      const t = allTasks.filter((task: Task) => task.uid === email);
-      setTasks(t);
-    }
-  }, [allTasks, session?.user]);
-
+const Home = ({ tasks }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <LayoutContianer>
       <Weekly tasks={tasks} />
@@ -25,13 +14,26 @@ const Home = ({ allTasks }: InferGetStaticPropsType<typeof getStaticProps>) => {
   );
 };
 
-export const getStaticProps = async () => {
-  const { data } = await axios.get('http://localhost:3000/api/tasks');
-  const allTasks = data.data;
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  const session = (await getSession(ctx)) as RootState;
+  if (session) {
+    const { user } = session;
+    const { data } = await axios.get('http://localhost:3000/api/tasks');
+    const { data: t } = data;
+    const tasks = t.filter((task: Task) => task.uid === user.email);
+    console.log('render');
+
+    return {
+      props: {
+        tasks,
+      },
+    };
+  }
 
   return {
-    props: { allTasks },
-    revalidate: 1,
+    props: {
+      tasks: null,
+    },
   };
 };
 

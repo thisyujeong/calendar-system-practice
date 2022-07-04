@@ -1,11 +1,10 @@
-import { useSession } from 'next-auth/react';
-import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Task } from '../../models/Task';
 import { currCalendar } from '../../store/modules/calendar';
-import getThisWeek from '../../utils/getThisWeek';
 import { WeeklyContainer } from './Weekly.style';
+import { Task } from '../../models/Task';
+import dynamic from 'next/dynamic';
+import getThisWeek from '../../utils/getThisWeek';
 
 const WeeklyItem = dynamic(() => import('./WeeklyItem'), {
   ssr: false,
