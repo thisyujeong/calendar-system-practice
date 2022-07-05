@@ -63,7 +63,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             $push: {
               'tasks.$[inner].task': { text, checked },
             },
-          } as UpdateQuery<{ text: string; checked: boolean }>,
+          } as UpdateQuery<TaskQuery>,
           { arrayFilters: [{ 'inner.date': date }] }
         );
 
