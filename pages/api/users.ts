@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const users = await User.find({});
         res.status(200).json({ success: true, data: users });
       } catch (error) {
-        res.status(400).json({ success: false });
+        res.status(400).json({ success: false, error: error });
       }
       break;
     case 'POST':
@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const user = await User.create(req.body);
         res.status(201).json({ success: true, data: user });
       } catch (error) {
-        res.status(400).json({ success: false });
+        res.status(400).json({ success: false, error: error });
       }
       break;
     default:

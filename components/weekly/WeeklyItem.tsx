@@ -13,13 +13,14 @@ import {
   TodoInputItem,
   TodoItemBox,
 } from './WeeklyItem.style';
+import axios from 'axios';
+import { RootState } from '../../store';
 
 type WeeklyItemProps = {
   day: Days;
 };
 
 type InputData = {
-  date: string;
   text: string;
   type: string;
   checked: boolean;
@@ -27,8 +28,9 @@ type InputData = {
 
 const WeekItem = ({ day }: WeeklyItemProps) => {
   const [inputData, setInputData] = useState<InputData[]>([
-    { date: day.fullDate.toString(), text: '', type: 'input', checked: false },
+    { text: '', type: 'input', checked: false },
   ]);
+  const { data: session } = useSession();
   const [focusId, setFocusId] = useState(0);
   const [inputText, setInputText] = useState<string>('');
   const [isFocus, setFocus] = useState<boolean>(false);
@@ -39,6 +41,19 @@ const WeekItem = ({ day }: WeeklyItemProps) => {
     if (isFocus) inputRef.current?.focus();
   }, [isFocus, focusId]);
 
+  const saveData = useCallback(() => {
+    if (session && inputText !== '') {
+      const { email } = session?.user as RootState;
+
+      axios.post('http://localhost:3000/api/tasks', {
+        uid: email,
+        date: day.fullDate.toString(),
+        text: inputText,
+        checked: checked,
+      });
+    }
+  }, [checked, day.fullDate, inputText, session]);
+
   const onClickBody = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
     e.stopPropagation();
     inputRef.current?.focus();
@@ -48,20 +63,24 @@ const WeekItem = ({ day }: WeeklyItemProps) => {
   const addInputHandler = useCallback(() => {
     setInputData(
       inputData.concat({
-        date: day.fullDate.toString(),
         text: '',
         type: 'input',
         checked: false,
       })
     );
     setFocusId(focusId + 1);
-  }, [day.fullDate, focusId, inputData]);
+  }, [focusId, inputData]);
 
   const onChangeInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
   }, []);
 
-  const onBlurInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {}, []);
+  const onBlurInput = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      saveData();
+    },
+    [saveData]
+  );
 
   const onKeyPress = useCallback(
     (e: React.KeyboardEvent<HTMLElement>) => {
@@ -74,9 +93,10 @@ const WeekItem = ({ day }: WeeklyItemProps) => {
         setInputText('');
         addInputHandler();
         setFocus(true);
+        saveData();
       }
     },
-    [focusId, inputData, inputText, addInputHandler]
+    [inputText, inputData, focusId, addInputHandler, saveData]
   );
 
   return (
